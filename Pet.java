@@ -29,6 +29,10 @@ public class Pet {
         return this.age;
     }
     // update pet info
+    public void updatePet(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
 
     @Override
     public String toString() { // override default toString() method

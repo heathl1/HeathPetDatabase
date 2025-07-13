@@ -11,14 +11,26 @@ public class PetDatabase {
         System.out.println("What would you like to do?");
         System.out.println("1) Show pets");
         System.out.println("2) Add more pets");
-        System.out.println("3) Search pets by name");
-        System.out.println("4) Search pets by age");
-        System.out.println("5) Exit the program");
+        System.out.println("3) Update existing pet");
+        System.out.println("4) Remove an existing pet");
+        System.out.println("5) Search pets by name");
+        System.out.println("6) Search pets by age ");
+        System.out.println("7) Exit the program");
 
     }
     public void addPet(Pet pet) {
         // add pet to the database
         petDatabase.add(pet);
+    }
+
+    public Pet getPet(int id) {
+        for (Pet pet: petDatabase) {
+            if (id == pet.getId()) {
+                return pet;
+            }
+        }
+        System.out.println("Pet not found");
+        return null;
     }
 
 
@@ -27,10 +39,25 @@ public class PetDatabase {
         System.out.println("+-----------------------+"); // line to seperate the table
         System.out.printf("|%3s | %-10s |%4s |\n", "ID", "NAME", "AGE"); // headers for the columns
         System.out.println("+-----------------------+"); // table separator
-        for (Pet pet : petDatabase) {
+        for (Pet pet : this.petDatabase) {
             System.out.println(pet); // use toString defined in pet class
         }
         System.out.println("+-----------------------+"); // table separator
+    }
+
+    public void removePet(int id) {
+        boolean found = false; // tracks whether the pet is found or not
+        for (Pet pet: petDatabase) { // iterate through the database
+            if (pet.getId() == id) {
+                int index = petDatabase.indexOf(pet);
+                petDatabase.remove(index); // remove the pet with the matching id
+                found = true;
+                break;
+            }
+        }
+        if (!found){ // prints if a pet is not found
+            System.out.println("Pet not found");
+        }
     }
 
     public void searchByName(String name) {
@@ -55,6 +82,8 @@ public class PetDatabase {
             }
         }
         System.out.println("+-----------------------+"); // table separator
-
     }
+
+
+
 }
