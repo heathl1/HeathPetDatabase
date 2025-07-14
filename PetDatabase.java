@@ -9,7 +9,7 @@ public class PetDatabase {
     public void menu() {
         // option menu - to be updated
         System.out.println("What would you like to do?");
-        System.out.println("1) Show pets");
+        System.out.println("1) View all pets");
         System.out.println("2) Add new pets");
         System.out.println("3) Remove a pet");
         System.out.println("4) Exit the program");
@@ -17,7 +17,12 @@ public class PetDatabase {
     }
     public void addPet(Pet pet) {
         // add pet to the database
-        petDatabase.add(pet);
+        if (petDatabase.size() < 5) {
+            petDatabase.add(pet);
+        }
+        else {
+            System.out.println("Error: Database is full");
+        }
     }
 
     public Pet getPet(int id) {
@@ -53,7 +58,7 @@ public class PetDatabase {
             }
         }
         if (!found){ // prints if a pet is not found
-            System.out.println("Pet not found");
+            System.out.printf("Error: ID %d does not exist.\n", id);
         }
     }
 
