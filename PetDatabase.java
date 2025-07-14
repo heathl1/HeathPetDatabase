@@ -10,12 +10,9 @@ public class PetDatabase {
         // option menu - to be updated
         System.out.println("What would you like to do?");
         System.out.println("1) Show pets");
-        System.out.println("2) Add more pets");
-        System.out.println("3) Update existing pet");
-        System.out.println("4) Remove an existing pet");
-        System.out.println("5) Search pets by name");
-        System.out.println("6) Search pets by age ");
-        System.out.println("7) Exit the program");
+        System.out.println("2) Add new pets");
+        System.out.println("3) Remove a pet");
+        System.out.println("4) Exit the program");
 
     }
     public void addPet(Pet pet) {
