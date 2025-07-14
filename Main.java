@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 /*
 Assignment: Session 1 - pet database assignment
 Author: Layla Heath
@@ -73,6 +75,9 @@ public class Main {
                             if (petData.length != 2) { // throw exception if there is too much or too little information
                                 throw new Exception();
                             }
+                            if ((Integer.parseInt(petData[1]) < 1) || (Integer.parseInt(petData[1]) > 20)) {
+                                throw new Exception();
+                            }
                             petDatabase.addPet(new Pet(petData[0], Integer.parseInt(petData[1]))); // create/add new pet
                         } catch (Exception e) {
                             System.out.printf("Error: '%s' is not a valid input\n", pet); // print error message
@@ -95,10 +100,20 @@ public class Main {
 
                 default:
                     System.out.println("Invalid choice. Please Try again"); // executes when the number is not a choice
+                    break;
             }
             } catch (InputMismatchException err) {
                 System.out.println("Error: invalid input type. Expected integer type");
                 input.nextLine();
+            }
+            try (FileWriter myWriter = new FileWriter("pets.txt")) {
+                for (Pet pet : petDatabase.petDatabase) {
+                    myWriter.write(String.format("%s,%d\n", pet.getName(), pet.getAge()));
+                }
+                System.out.println("pet.txt updated");
+            } catch (IOException e) {
+                System.out.println("An error occurred");
+                e.printStackTrace();
             }
         } while (choice != 4);
         input.close(); // close the scanner for security

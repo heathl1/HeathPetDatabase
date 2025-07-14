@@ -26,10 +26,8 @@ public class PetDatabase {
     }
 
     public Pet getPet(int id) {
-        for (Pet pet: petDatabase) {
-            if (id == pet.getId()) {
-                return pet;
-            }
+        if ((id < petDatabase.size()) && (id >= 0)) {
+            return petDatabase.get(id);
         }
         System.out.println("Pet not found");
         return null;
@@ -42,26 +40,22 @@ public class PetDatabase {
         System.out.printf("|%3s | %-10s |%4s |\n", "ID", "NAME", "AGE"); // headers for the columns
         System.out.println("+-----------------------+"); // table separator
         for (Pet pet : this.petDatabase) {
-            System.out.println(pet); // use toString defined in pet class
+            System.out.printf("|%3s %s\n", this.petDatabase.indexOf(pet), pet); // use toString defined in pet class
         }
         System.out.println("+-----------------------+"); // table separator
     }
 
     public void removePet(int id) {
         boolean found = false; // tracks whether the pet is found or not
-        for (Pet pet: petDatabase) { // iterate through the database
-            if (pet.getId() == id) {
-                int index = petDatabase.indexOf(pet);
-                petDatabase.remove(index); // remove the pet with the matching id
-                found = true;
-                break;
-            }
+        if ((petDatabase.size() > id) && (id >= 0)) {
+            petDatabase.remove(id);
+            found = true;
         }
         if (!found){ // prints if a pet is not found
             System.out.printf("Error: ID %d does not exist.\n", id);
         }
     }
-
+/*
     public void searchByName(String name) {
         System.out.println("+-----------------------+"); // line to seperate the table
         System.out.printf("|%3s | %-10s |%4s |\n", "ID", "NAME", "AGE"); // headers for the columns
@@ -80,12 +74,12 @@ public class PetDatabase {
         System.out.println("+-----------------------+"); // table separator
         for (Pet pet : this.petDatabase) { //iterate through database
             if (age == pet.getAge()) {
-                System.out.println(pet); // print pets with matching age
+                System.out.printf("|%3s %s", this.petDatabase.indexOf(pet), pet); // print pets with matching age
             }
         }
         System.out.println("+-----------------------+"); // table separator
     }
 
-
+ */
 
 }

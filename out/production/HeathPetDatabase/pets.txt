@@ -1,5 +1,5 @@
 Kitty,7
 Mikey,15
 Fido,3
-Georgie,1
 Hunter,18
+Charlie,12
